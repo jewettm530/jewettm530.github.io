@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://jewettm530.github.io/sitemap.xml
