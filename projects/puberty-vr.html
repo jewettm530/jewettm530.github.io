@@ -1,1 +1,651 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Puberty & Virtual Reality | Madeline Jewett</title><meta name="description" content="Case study: reward-learning and multimodal stress research using behavioral, heart-rate, and EEG data."><link rel="icon" href="../assets/images/favicon.svg"><link rel="stylesheet" href="../assets/css/styles.css?v=20260901-1"></head><body><header class="site-header"><div class="container nav"><a class="brand" href="../index.html">Madeline Jewett</a><button class="nav-toggle" aria-label="Toggle navigation">☰</button><nav class="nav-links"><a href="../index.html#work">Work</a><a href="../index.html#research">Research</a><a href="../index.html#about">About</a></nav></div></header><main><section class="project-hero"><div class="container"><div class="breadcrumb"><a href="../index.html">Portfolio</a> / Puberty & Virtual Reality</div><p class="eyebrow">Behavioral Science · Statistics · Multimodal Data</p><h1>Puberty & Virtual Reality</h1><p class="lede">Research pipelines for understanding reward learning, stress responses, individual differences, and developmental patterns across behavioral and physiological data.</p><div class="hero-actions"><a class="btn btn-primary" href="https://github.com/jewettm530/Puberty_VR" target="_blank" rel="noreferrer">View repository ↗</a></div></div></section><section class="section"><div class="container prose"><h2>The question</h2><p>How do people learn reward contingencies, how much do those learning patterns vary between individuals, and how might learning relate to stress or developmental differences?</p><div class="flow">Trial-level behavior + heart rate + EEG + session metadata → validated participant-session dataset → learning & stress analyses</div><h2>What I built</h2><ul><li>JATOS behavioral-data conversion and standardization</li><li>Raw-data inventories and schema validation</li><li>Group-average and individual learning curves</li><li>Learning-rate, slope, and win-stay / lose-switch analyses</li><li>Heart-rate and EEG availability/quality summaries</li><li>Integrated participant × session multimodal datasets</li><li>Developmental-group comparison workflows</li></ul><h2>Research mindset</h2><p>The repository is designed around reproducibility and data quality rather than only producing a final graph. File naming, participant/session matching, missing-session handling, and modality availability are explicitly validated before downstream analysis.</p><div class="callout"><strong>Statistical caution matters:</strong> learner-group splits and small developmental subgroups are treated as exploratory, and the repository documents where stronger confirmatory models would be appropriate.</div><h2>What this project demonstrates</h2><ul><li>Behavioral-data analysis</li><li>Research data engineering</li><li>Multimodal integration</li><li>Statistical inference and effect sizes</li><li>EEG and heart-rate data handling</li><li>Privacy-conscious participant data management</li></ul><h2>Tools</h2><div class="tags"><span class="tag">Python</span><span class="tag">pandas</span><span class="tag">SciPy</span><span class="tag">Behavioral Modeling</span><span class="tag">EEG</span><span class="tag">Heart Rate</span></div></div></section></main><footer class="site-footer"><div class="container footer-row"><span>© <span data-year></span> Madeline Jewett</span><a href="../index.html">← Back to portfolio</a></div></footer><script src="../assets/js/main.js"></script></body></html>
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <title>
+        Puberty & Virtual Reality | Madeline Jewett
+    </title>
+
+    <meta
+        name="description"
+        content="Case study: reward-learning and multimodal stress research
+        using behavioral, heart-rate, and EEG data."
+    >
+
+    <link
+        rel="icon"
+        href="../assets/images/favicon.svg"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../assets/css/styles.css?v=20260901-2"
+    >
+
+</head>
+
+
+<body>
+
+<header class="site-header">
+
+    <div class="container nav">
+
+        <a
+            class="brand"
+            href="../index.html"
+        >
+            Madeline Jewett
+        </a>
+
+        <button
+            class="nav-toggle"
+            aria-label="Toggle navigation"
+        >
+            ☰
+        </button>
+
+        <nav class="nav-links">
+
+            <a href="../index.html#work">
+                Work
+            </a>
+
+            <a href="../index.html#research">
+                Research
+            </a>
+
+            <a href="../index.html#skills">
+                Toolkit
+            </a>
+
+            <a href="../index.html#about">
+                About
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<main>
+
+    <!-- =====================================================
+         Project hero
+         ===================================================== -->
+
+    <section class="project-hero">
+
+        <div class="container">
+
+            <div class="breadcrumb">
+
+                <a href="../index.html">
+                    Portfolio
+                </a>
+
+                /
+
+                Puberty & Virtual Reality
+
+            </div>
+
+            <p class="eyebrow">
+                Behavioral Science · Statistics · Multimodal Data
+            </p>
+
+            <h1>
+                Puberty & Virtual Reality
+            </h1>
+
+            <p class="lede">
+                Research pipelines for understanding reward learning, stress
+                responses, individual differences, and developmental
+                patterns across behavioral and physiological data.
+            </p>
+
+            <div class="hero-actions">
+
+                <a
+                    class="btn btn-primary"
+                    href="https://github.com/jewettm530/Puberty_VR"
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    View repository ↗
+                </a>
+
+            </div>
+
+
+            <div class="stat-grid">
+
+                <div class="stat">
+
+                    <strong>
+                        18
+                    </strong>
+
+                    <span>
+                        Reward-learning trials
+                    </span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <strong>
+                        2
+                    </strong>
+
+                    <span>
+                        Learning sessions
+                    </span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <strong>
+                        3
+                    </strong>
+
+                    <span>
+                        Core modalities · behavior, HR, EEG
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         Case study
+         ===================================================== -->
+
+    <section class="section">
+
+        <div class="container prose">
+
+            <h2>
+                The research question
+            </h2>
+
+            <p>
+                How do participants learn reward contingencies across
+                repeated trials, how much do those learning patterns vary
+                across individuals, and how might learning relate to stress
+                and developmental differences?
+            </p>
+
+
+            <div class="flow">
+                Trial-level behavior + heart rate + EEG + session metadata
+                → validated participant-session dataset
+                → learning and stress analyses
+            </div>
+
+
+            <!-- Group learning -->
+
+            <h2>
+                Learning across trials
+            </h2>
+
+            <p class="figure-intro">
+                At the group level, participants moved above chance
+                performance early in the task and then stabilized across
+                later trials. The two sessions show similar overall learning
+                patterns, although the fitted trajectories differ somewhat
+                in their early rate of improvement.
+            </p>
+
+
+            <figure class="research-figure figure-wide">
+
+                <a
+                    href="../assets/images/puberty-vr/group_average_curves.png"
+                    target="_blank"
+                    rel="noreferrer"
+                >
+
+                    <img
+                        src="../assets/images/puberty-vr/group_average_curves.png"
+                        alt="Group-average learning curves across 18 trials
+                        for Session 1 and Session 2, including observed
+                        choice proportions, exponential model fits,
+                        uncertainty bands, and chance performance."
+                        loading="lazy"
+                        decoding="async"
+                    >
+
+                </a>
+
+                <figcaption>
+
+                    <strong>
+                        Group-average reward learning across two sessions.
+                    </strong>
+
+                    Points show observed proportions of choosing the set
+                    winner, solid lines show fitted exponential learning
+                    curves, shaded regions show variability, and the dashed
+                    line represents chance performance.
+
+                </figcaption>
+
+            </figure>
+
+
+            <!-- Individual differences -->
+
+            <h2>
+                Individual differences in learning
+            </h2>
+
+            <p class="figure-intro">
+                The group average hides substantial participant-to-participant
+                variability. Some participants show rapid improvement,
+                others show slower learning, and several remain near chance
+                across much of the task.
+            </p>
+
+
+            <figure class="research-figure figure-wide">
+
+                <a
+                    href="../assets/images/puberty-vr/all_individuals_with_curves_sess1.png"
+                    target="_blank"
+                    rel="noreferrer"
+                >
+
+                    <img
+                        src="../assets/images/puberty-vr/all_individuals_with_curves_sess1.png"
+                        alt="Session 1 individual reward-learning
+                        trajectories showing observed choice proportions
+                        and fitted exponential learning curves for each
+                        participant."
+                        loading="lazy"
+                        decoding="async"
+                    >
+
+                </a>
+
+                <figcaption>
+
+                    <strong>
+                        Individual Session 1 learning trajectories.
+                    </strong>
+
+                    Points represent observed behavior and lines represent
+                    participant-level exponential fits, illustrating
+                    substantial heterogeneity in reward learning.
+
+                </figcaption>
+
+            </figure>
+
+
+            <!-- Win stay lose switch -->
+
+            <h2>
+                Win-stay and lose-switch behavior
+            </h2>
+
+            <p class="figure-intro">
+                Choice behavior can also be described in terms of whether
+                participants repeat a rewarded choice or switch after an
+                unrewarded choice. Across the full sample, win-stay behavior
+                was more common than lose-switch behavior in both sessions.
+            </p>
+
+
+            <figure class="research-figure">
+
+                <a
+                    href="../assets/images/puberty-vr/all_subjects.png"
+                    target="_blank"
+                    rel="noreferrer"
+                >
+
+                    <img
+                        src="../assets/images/puberty-vr/all_subjects.png"
+                        alt="Bar chart comparing win-stay and lose-switch
+                        proportions across Session 1 and Session 2 for all
+                        participants."
+                        loading="lazy"
+                        decoding="async"
+                    >
+
+                </a>
+
+                <figcaption>
+
+                    <strong>
+                        Win-stay versus lose-switch behavior across all
+                        participants.
+                    </strong>
+
+                    Win-stay choices were more frequent than lose-switch
+                    choices in both experimental sessions.
+
+                </figcaption>
+
+            </figure>
+
+
+            <!-- Learner groups -->
+
+            <h2>
+                Exploratory learner-group comparison
+            </h2>
+
+            <p class="figure-intro">
+                I also examined win-stay and lose-switch behavior after
+                dividing participants by an exploratory Session 1 learning
+                parameter. These groups are useful for describing individual
+                variability, but they should not be interpreted as fixed or
+                clinically meaningful participant types.
+            </p>
+
+
+            <div class="figure-pair">
+
+                <figure>
+
+                    <a
+                        href="../assets/images/puberty-vr/good_learners.png"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+
+                        <img
+                            src="../assets/images/puberty-vr/good_learners.png"
+                            alt="Win-stay and lose-switch proportions across
+                            two sessions for the higher-learning participant
+                            group."
+                            loading="lazy"
+                            decoding="async"
+                        >
+
+                    </a>
+
+                    <figcaption>
+                        Higher-learning group
+                    </figcaption>
+
+                </figure>
+
+
+                <figure>
+
+                    <a
+                        href="../assets/images/puberty-vr/poor_learners.png"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+
+                        <img
+                            src="../assets/images/puberty-vr/poor_learners.png"
+                            alt="Win-stay and lose-switch proportions across
+                            two sessions for the lower-learning participant
+                            group."
+                            loading="lazy"
+                            decoding="async"
+                        >
+
+                    </a>
+
+                    <figcaption>
+                        Lower-learning group
+                    </figcaption>
+
+                </figure>
+
+            </div>
+
+
+            <p class="figure-group-caption">
+
+                <strong>
+                    Exploratory learner-group comparison.
+                </strong>
+
+                Win-stay and lose-switch tendencies shown separately for
+                participants above and below the exploratory learning-group
+                split.
+
+            </p>
+
+
+            <div class="callout">
+
+                <strong>
+                    Statistical caution:
+                </strong>
+
+                the learner-group classification is based on an exploratory
+                Session 1 median split of a fitted learning parameter.
+                Continuous analyses are generally more informative than
+                treating these groups as fundamentally different participant
+                types.
+
+            </div>
+
+
+            <!-- Pipeline -->
+
+            <h2>
+                Research data pipeline
+            </h2>
+
+            <p>
+                The repository is designed around reproducibility and data
+                quality rather than simply producing a final graph.
+                Participant/session matching, filename standardization,
+                missing sessions, physiological-data availability, and
+                data-quality issues are explicitly checked before downstream
+                analyses.
+            </p>
+
+            <ul>
+
+                <li>
+                    JATOS behavioral-data conversion and standardization
+                </li>
+
+                <li>
+                    Raw-data inventory and schema validation
+                </li>
+
+                <li>
+                    Group and individual learning curves
+                </li>
+
+                <li>
+                    Learning-rate and learning-slope analyses
+                </li>
+
+                <li>
+                    Win-stay / lose-switch analysis
+                </li>
+
+                <li>
+                    Heart-rate and EEG summaries
+                </li>
+
+                <li>
+                    Integrated participant × session multimodal datasets
+                </li>
+
+                <li>
+                    Developmental-group comparison workflows
+                </li>
+
+            </ul>
+
+
+            <!-- Skills demonstrated -->
+
+            <h2>
+                What this project demonstrates
+            </h2>
+
+            <div class="case-grid">
+
+                <div class="case-card">
+
+                    <h3>
+                        Behavioral modeling
+                    </h3>
+
+                    <p>
+                        Trial-level reward-learning curves, individual
+                        variability, and reinforcement-based choice
+                        strategies.
+                    </p>
+
+                </div>
+
+
+                <div class="case-card">
+
+                    <h3>
+                        Research data engineering
+                    </h3>
+
+                    <p>
+                        Validation, standardization, participant-session
+                        matching, and reproducible analysis datasets.
+                    </p>
+
+                </div>
+
+
+                <div class="case-card">
+
+                    <h3>
+                        Multimodal integration
+                    </h3>
+
+                    <p>
+                        Behavioral data combined with heart-rate, EEG, and
+                        session-level information.
+                    </p>
+
+                </div>
+
+
+                <div class="case-card">
+
+                    <h3>
+                        Statistical interpretation
+                    </h3>
+
+                    <p>
+                        Explicit distinction between exploratory patterns and
+                        confirmatory inference.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Tools -->
+
+            <h2>
+                Tools
+            </h2>
+
+            <div class="tags">
+
+                <span class="tag">
+                    Python
+                </span>
+
+                <span class="tag">
+                    pandas
+                </span>
+
+                <span class="tag">
+                    SciPy
+                </span>
+
+                <span class="tag">
+                    Behavioral Modeling
+                </span>
+
+                <span class="tag">
+                    EEG
+                </span>
+
+                <span class="tag">
+                    Heart Rate
+                </span>
+
+                <span class="tag">
+                    Multimodal Data
+                </span>
+
+            </div>
+
+
+            <div class="project-next">
+
+                <span>
+                    Next case study
+                </span>
+
+                <a href="portfolio-assistant.html">
+                    Portfolio Research Assistant →
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer class="site-footer">
+
+    <div class="container footer-row">
+
+        <span>
+            © <span data-year></span> Madeline Jewett
+        </span>
+
+        <a href="../index.html">
+            ← Back to portfolio
+        </a>
+
+    </div>
+
+</footer>
+
+
+<script src="../assets/js/main.js"></script>
+
+</body>
+
+</html>

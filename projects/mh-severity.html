@@ -1,1 +1,572 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mental Health Symptom Severity | Madeline Jewett</title><meta name="description" content="Case study: predicting mental-health symptom severity from behavioral and resting-state fMRI data."><link rel="icon" href="../assets/images/favicon.svg"><link rel="stylesheet" href="../assets/css/styles.css?v=20260901-1"></head><body><header class="site-header"><div class="container nav"><a class="brand" href="../index.html">Madeline Jewett</a><button class="nav-toggle" aria-label="Toggle navigation">☰</button><nav class="nav-links"><a href="../index.html#work">Work</a><a href="../index.html#research">Research</a><a href="../index.html#about">About</a></nav></div></header><main><section class="project-hero"><div class="container"><div class="breadcrumb"><a href="../index.html">Portfolio</a> / Mental Health Symptom Severity</div><p class="eyebrow">Machine Learning · Neuroimaging · Mental Health</p><h1>Mental Health Symptom Severity</h1><p class="lede">Can behavioral measures and resting-state fMRI predict continuous depression, anxiety, stress, and anhedonia severity?</p><div class="hero-actions"><a class="btn btn-primary" href="https://github.com/jewettm530/MH-Severity" target="_blank" rel="noreferrer">View repository ↗</a><a class="btn" href="https://jewettm530.github.io/MH-Severity/" target="_blank" rel="noreferrer">Live project ↗</a></div><div class="stat-grid"><div class="stat"><strong>.719</strong><span>Held-out R² · state anxiety</span></div><div class="stat"><strong>.636</strong><span>Held-out R² · depression</span></div><div class="stat"><strong>.577</strong><span>Held-out R² · perceived stress</span></div></div></div></section><section class="section"><div class="container prose"><h2>The question</h2><p>This project uses the Transdiagnostic Connectome Project to compare behavioral, resting-state fMRI, and multimodal predictors of symptom severity. The goal is not only to maximize accuracy, but to test whether imaging adds out-of-sample value beyond behavioral data.</p><div class="flow">Behavioral features + resting-state fMRI → leakage-safe preprocessing → Random Forest → symptom severity</div><h2>Approach</h2><ul><li>Four continuous targets: depression, state anxiety, perceived stress, and anhedonia.</li><li>Behavioral-only, imaging-only, and multimodal feature configurations.</li><li>High-dimensional imaging reduction performed inside training/CV folds.</li><li>Repeated cross-validation on training data and held-out test evaluation after model selection.</li><li>MAE, RMSE, and R² used to compare generalization.</li></ul><h2>What I found</h2><p>Behavioral features were the strongest predictors in the current experiments. Anxiety showed the best held-out performance, followed by depression and perceived stress. Anhedonia was substantially more difficult to predict.</p><div class="callout"><strong>Important interpretation:</strong> imaging-only models performing poorly does not establish that resting-state fMRI contains no symptom-related information. It means the current sample, representation, and modeling approach did not extract additional predictive value beyond behavioral measures.</div><h2>What this project demonstrates</h2><ul><li>End-to-end machine-learning experiment design</li><li>Neuroimaging feature engineering</li><li>Leakage-aware cross-validation</li><li>Multimodal model comparison</li><li>Reproducible results and validation audits</li><li>Streamlit + GitHub Pages communication of results</li></ul><h2>Tools</h2><div class="tags"><span class="tag">Python</span><span class="tag">scikit-learn</span><span class="tag">pandas</span><span class="tag">NumPy</span><span class="tag">SciPy</span><span class="tag">Streamlit</span><span class="tag">fMRI</span></div></div></section></main><footer class="site-footer"><div class="container footer-row"><span>© <span data-year></span> Madeline Jewett</span><a href="../index.html">← Back to portfolio</a></div></footer><script src="../assets/js/main.js"></script></body></html>
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <title>
+        Mental Health Symptom Severity | Madeline Jewett
+    </title>
+
+    <meta
+        name="description"
+        content="Case study: predicting mental-health symptom severity from
+        behavioral and resting-state fMRI data."
+    >
+
+    <link
+        rel="icon"
+        href="../assets/images/favicon.svg"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../assets/css/styles.css?v=20260901-2"
+    >
+
+</head>
+
+
+<body>
+
+<header class="site-header">
+
+    <div class="container nav">
+
+        <a
+            class="brand"
+            href="../index.html"
+        >
+            Madeline Jewett
+        </a>
+
+        <button
+            class="nav-toggle"
+            aria-label="Toggle navigation"
+        >
+            ☰
+        </button>
+
+        <nav class="nav-links">
+
+            <a href="../index.html#work">
+                Work
+            </a>
+
+            <a href="../index.html#research">
+                Research
+            </a>
+
+            <a href="../index.html#skills">
+                Toolkit
+            </a>
+
+            <a href="../index.html#about">
+                About
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<main>
+
+    <!-- =====================================================
+         Project hero
+         ===================================================== -->
+
+    <section class="project-hero">
+
+        <div class="container">
+
+            <div class="breadcrumb">
+
+                <a href="../index.html">
+                    Portfolio
+                </a>
+
+                /
+
+                Mental Health Symptom Severity
+
+            </div>
+
+            <p class="eyebrow">
+                Machine Learning · Neuroimaging · Mental Health
+            </p>
+
+            <h1>
+                Mental Health Symptom Severity
+            </h1>
+
+            <p class="lede">
+                Can behavioral measures and resting-state fMRI predict
+                continuous depression, anxiety, stress, and anhedonia
+                severity?
+            </p>
+
+            <div class="hero-actions">
+
+                <a
+                    class="btn btn-primary"
+                    href="https://github.com/jewettm530/MH-Severity"
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    View repository ↗
+                </a>
+
+                <a
+                    class="btn"
+                    href="https://jewettm530.github.io/MH-Severity/"
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    Live project ↗
+                </a>
+
+            </div>
+
+
+            <div class="stat-grid">
+
+                <div class="stat">
+
+                    <strong>
+                        .719
+                    </strong>
+
+                    <span>
+                        Held-out R² · state anxiety
+                    </span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <strong>
+                        .636
+                    </strong>
+
+                    <span>
+                        Held-out R² · depression
+                    </span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <strong>
+                        .577
+                    </strong>
+
+                    <span>
+                        Held-out R² · perceived stress
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         Case study
+         ===================================================== -->
+
+    <section class="section">
+
+        <div class="container prose">
+
+            <h2>
+                The question
+            </h2>
+
+            <p>
+                This project uses the Transdiagnostic Connectome Project to
+                investigate whether behavioral measures, resting-state fMRI,
+                or their combination can predict continuous symptom
+                severity.
+            </p>
+
+            <p>
+                The goal is not simply to maximize accuracy. I also wanted
+                to test whether the imaging representation adds
+                out-of-sample predictive information beyond the behavioral
+                data.
+            </p>
+
+
+            <!-- Main performance figure -->
+
+            <h2>
+                Predictive performance
+            </h2>
+
+            <p class="figure-intro">
+                The clearest result was the difference between data
+                modalities. Behavioral predictors produced strong
+                cross-validated performance for several symptom outcomes,
+                while imaging-only models performed below R² = 0. Adding
+                the current resting-state fMRI representation did not
+                improve the strongest behavioral models.
+            </p>
+
+
+            <figure class="research-figure figure-wide">
+
+                <a
+                    href="../assets/images/mh-severity/model_performance_by_modality.png"
+                    target="_blank"
+                    rel="noreferrer"
+                >
+
+                    <img
+                        src="../assets/images/mh-severity/model_performance_by_modality.png"
+                        alt="Predictive performance by modality for
+                        depression, anxiety, stress, and anhedonia.
+                        Behavioral models outperform imaging-only and
+                        multimodal models."
+                        loading="lazy"
+                        decoding="async"
+                    >
+
+                </a>
+
+                <figcaption>
+
+                    <strong>
+                        Predictive performance by data modality.
+                    </strong>
+
+                    Behavioral predictors produced the strongest repeated
+                    cross-validation performance across all four symptom
+                    outcomes. Imaging-only models performed below R² = 0,
+                    and the current multimodal models did not outperform the
+                    behavioral-only models.
+
+                </figcaption>
+
+            </figure>
+
+
+            <div class="callout">
+
+                <strong>
+                    Important interpretation:
+                </strong>
+
+                poor imaging-only performance does not establish that
+                resting-state fMRI contains no symptom-related information.
+                It means that the current sample, feature representation,
+                and modeling approach did not extract additional predictive
+                value beyond behavioral measures.
+
+            </div>
+
+
+            <!-- Domain connections -->
+
+            <h2>
+                How much information crosses symptom domains?
+            </h2>
+
+            <p class="figure-intro">
+                I also tested whether predictor categories associated with
+                other symptom domains improved prediction of each target.
+                These experiments help characterize the degree to which
+                depression, anxiety, stress, and anhedonia share predictive
+                behavioral information.
+            </p>
+
+
+            <figure class="research-figure figure-wide">
+
+                <a
+                    href="../assets/images/mh-severity/domain_connections.png"
+                    target="_blank"
+                    rel="noreferrer"
+                >
+
+                    <img
+                        src="../assets/images/mh-severity/domain_connections.png"
+                        alt="Four horizontal bar charts showing changes in
+                        repeated cross-validation R squared when symptom
+                        predictor categories are added for depression,
+                        anxiety, stress, and anhedonia."
+                        loading="lazy"
+                        decoding="async"
+                    >
+
+                </a>
+
+                <figcaption>
+
+                    <strong>
+                        Cross-domain predictive information.
+                    </strong>
+
+                    Changes in repeated cross-validation R² after adding
+                    behavioral predictor categories from other symptom
+                    domains. The magnitude of improvement differed across
+                    depression, anxiety, stress, and anhedonia.
+
+                </figcaption>
+
+            </figure>
+
+
+            <!-- Correlation matrix -->
+
+            <h2>
+                Relationships among behavioral measures
+            </h2>
+
+            <p class="figure-intro">
+                Many behavioral and clinical measures are substantially
+                correlated with multiple symptom outcomes. Examining this
+                correlation structure is important for understanding feature
+                overlap and for designing leakage-aware prediction
+                experiments.
+            </p>
+
+
+            <figure class="research-figure figure-wide">
+
+                <a
+                    href="../assets/images/mh-severity/spearman_feature_outcome_correlation_matrix.png"
+                    target="_blank"
+                    rel="noreferrer"
+                >
+
+                    <img
+                        src="../assets/images/mh-severity/spearman_feature_outcome_correlation_matrix.png"
+                        alt="Heatmap of Spearman correlations between
+                        selected behavioral features and depression,
+                        anxiety, stress, and anhedonia outcomes."
+                        loading="lazy"
+                        decoding="async"
+                    >
+
+                </a>
+
+                <figcaption>
+
+                    <strong>
+                        Strongest behavioral feature-to-outcome correlations.
+                    </strong>
+
+                    The correlation structure shows substantial overlap among
+                    symptom measures and related behavioral features,
+                    reinforcing the need for careful feature selection and
+                    interpretation.
+
+                </figcaption>
+
+            </figure>
+
+
+            <!-- Approach -->
+
+            <h2>
+                Approach
+            </h2>
+
+            <div class="flow">
+                Behavioral features + resting-state fMRI
+                → leakage-safe preprocessing
+                → Random Forest
+                → symptom severity
+            </div>
+
+            <ul>
+
+                <li>
+                    Four continuous targets: depression, state anxiety,
+                    perceived stress, and anhedonia.
+                </li>
+
+                <li>
+                    Behavioral-only, imaging-only, and multimodal feature
+                    configurations.
+                </li>
+
+                <li>
+                    High-dimensional imaging reduction performed inside
+                    training and cross-validation folds.
+                </li>
+
+                <li>
+                    Repeated cross-validation on the training set followed
+                    by held-out evaluation after model selection.
+                </li>
+
+                <li>
+                    MAE, RMSE, and R² used to evaluate generalization.
+                </li>
+
+            </ul>
+
+
+            <!-- Skills demonstrated -->
+
+            <h2>
+                What this project demonstrates
+            </h2>
+
+            <div class="case-grid">
+
+                <div class="case-card">
+
+                    <h3>
+                        Experiment design
+                    </h3>
+
+                    <p>
+                        Leakage-aware preprocessing, consistent participant
+                        cohorts, repeated validation, and held-out
+                        evaluation.
+                    </p>
+
+                </div>
+
+
+                <div class="case-card">
+
+                    <h3>
+                        Multimodal modeling
+                    </h3>
+
+                    <p>
+                        Direct comparison of behavioral, neuroimaging, and
+                        combined representations.
+                    </p>
+
+                </div>
+
+
+                <div class="case-card">
+
+                    <h3>
+                        Interpretation
+                    </h3>
+
+                    <p>
+                        Distinguishing predictive performance from claims
+                        about causality or biological relevance.
+                    </p>
+
+                </div>
+
+
+                <div class="case-card">
+
+                    <h3>
+                        Research communication
+                    </h3>
+
+                    <p>
+                        Reproducible outputs, validation audits, Streamlit,
+                        and a dedicated GitHub Pages project site.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Tools -->
+
+            <h2>
+                Tools
+            </h2>
+
+            <div class="tags">
+
+                <span class="tag">
+                    Python
+                </span>
+
+                <span class="tag">
+                    scikit-learn
+                </span>
+
+                <span class="tag">
+                    pandas
+                </span>
+
+                <span class="tag">
+                    NumPy
+                </span>
+
+                <span class="tag">
+                    SciPy
+                </span>
+
+                <span class="tag">
+                    Streamlit
+                </span>
+
+                <span class="tag">
+                    fMRI
+                </span>
+
+            </div>
+
+
+            <div class="project-next">
+
+                <span>
+                    Next case study
+                </span>
+
+                <a href="echonet.html">
+                    EchoNet-Dynamic Research →
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer class="site-footer">
+
+    <div class="container footer-row">
+
+        <span>
+            © <span data-year></span> Madeline Jewett
+        </span>
+
+        <a href="../index.html">
+            ← Back to portfolio
+        </a>
+
+    </div>
+
+</footer>
+
+
+<script src="../assets/js/main.js"></script>
+
+</body>
+
+</html>
