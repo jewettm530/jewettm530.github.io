@@ -28,7 +28,7 @@
 
     <link
         rel="stylesheet"
-        href="../assets/css/styles.css?v=20260901-2"
+        href="../assets/css/styles.css?v=20260901-5"
     >
 
 </head>
@@ -81,6 +81,10 @@
 
 <main>
 
+    <!-- =====================================================
+         Project hero
+         ===================================================== -->
+
     <section class="project-hero">
 
         <div class="container">
@@ -107,8 +111,9 @@
 
             <p class="lede">
                 A transparent, read-only portfolio analysis system built
-                around explainable scoring, market-data diagnostics,
-                reporting, and reproducible recommendation logic.
+                around explainable scoring, live account synchronization,
+                market-data diagnostics, alerts, reporting, and reproducible
+                recommendation logic.
             </p>
 
             <div class="hero-actions">
@@ -129,102 +134,354 @@
     </section>
 
 
+    <!-- =====================================================
+         Case study
+         ===================================================== -->
+
     <section class="section">
 
         <div class="container prose">
+
+            <!-- Design problem -->
 
             <h2>
                 The design problem
             </h2>
 
             <p>
-                Financial dashboards often surface large amounts of data
-                without making the reasoning behind a recommendation
-                inspectable.
+                Portfolio tools can surface a large amount of market data
+                without clearly explaining how that information translates
+                into a decision. I wanted this project to do more than display
+                prices or generate opaque buy and sell labels.
             </p>
 
             <p>
-                This project instead treats recommendations as structured
-                decision support: each signal should be traceable to the
-                data and rules that produced it.
+                The system is designed as an explainable research assistant:
+                portfolio health, individual holdings, alerts, and watchlist
+                candidates are evaluated using inspectable component scores
+                and clearly stated reasoning.
             </p>
 
 
             <div class="flow">
                 Portfolio + market data
-                → diagnostics & scoring
-                → explainable signals
-                → Streamlit dashboard + reports
+                → validation & diagnostics
+                → explainable scoring
+                → alerts & research signals
+                → dashboard + reports
             </div>
 
 
-            <h2>
-                Core features
-            </h2>
-
-            <ul>
-
-                <li>
-                    Portfolio allocation and health analysis
-                </li>
-
-                <li>
-                    Quote coverage and account-reconciliation diagnostics
-                </li>
-
-                <li>
-                    Hold / watch / trim / sell-review signals
-                </li>
-
-                <li>
-                    Watchlist and portfolio-fit analysis
-                </li>
-
-                <li>
-                    Investment-profile and thesis tracking
-                </li>
-
-                <li>
-                    Recommendation history and audit trail
-                </li>
-
-                <li>
-                    Daily and weekly report entry points
-                </li>
-
-                <li>
-                    CSV / Excel import workflow with review before
-                    replacement
-                </li>
-
-            </ul>
-
+            <!-- Main dashboard -->
 
             <h2>
-                Why “explainable” matters here
+                Portfolio overview
             </h2>
 
-            <p>
-                The current analyst layer is deterministic and rule-based
-                rather than an LLM. Natural-language-style questions are
-                routed to the same scoring engines used throughout the
-                application, keeping the underlying logic testable and
-                reproducible.
+            <p class="figure-intro">
+                The Streamlit dashboard provides a high-level view of the
+                portfolio before exposing more detailed analysis. It combines
+                portfolio health, account totals, position values, performance,
+                and data-confidence checks in one interface.
             </p>
+
+
+            <figure class="research-figure">
+
+                <a
+                    href="../assets/images/stock_agent/dashboard.png"
+                    target="_blank"
+                    rel="noreferrer"
+                >
+
+                    <img
+                        src="../assets/images/stock_agent/dashboard.png"
+                        alt="Portfolio Research Assistant dashboard showing
+                        portfolio health, positions, buying power, account
+                        totals, gains and losses, and data-confidence scores."
+                        loading="lazy"
+                        decoding="async"
+                    >
+
+                </a>
+
+                <figcaption>
+
+                    <strong>
+                        Portfolio dashboard.
+                    </strong>
+
+                    The main interface combines account-level portfolio
+                    information with portfolio-health and data-confidence
+                    metrics. The application remains read-only and does not
+                    execute trades.
+
+                </figcaption>
+
+            </figure>
+
+
+            <!-- Explainable analysis -->
+
+            <h2>
+                Explainable holding analysis
+            </h2>
+
+            <p class="figure-intro">
+                Instead of assigning a single unexplained score to each
+                holding, the system separates several dimensions of the
+                analysis. A holding can be evaluated independently on
+                fundamentals, valuation, momentum, analyst outlook,
+                volatility, and broader risk.
+            </p>
+
+
+            <figure class="research-figure">
+
+                <a
+                    href="../assets/images/stock_agent/JNJ_health_risk.png"
+                    target="_blank"
+                    rel="noreferrer"
+                >
+
+                    <img
+                        src="../assets/images/stock_agent/JNJ_health_risk.png"
+                        alt="Example holding analysis showing separate scores
+                        for fundamentals, valuation, momentum, analyst outlook,
+                        and volatility together with an explanation of the
+                        underlying reasoning."
+                        loading="lazy"
+                        decoding="async"
+                    >
+
+                </a>
+
+                <figcaption>
+
+                    <strong>
+                        Component-level holding analysis.
+                    </strong>
+
+                    Each holding receives multiple independently interpretable
+                    scores rather than one opaque recommendation. The
+                    interface also exposes the reasons contributing to the
+                    assessment.
+
+                </figcaption>
+
+            </figure>
 
 
             <div class="callout">
 
                 <strong>
-                    Scope:
+                    Design principle:
                 </strong>
 
-                this is an educational research tool. It does not execute
-                trades and its heuristic recommendations are not financial
-                advice or guarantees.
+                a score should identify what deserves investigation, not
+                pretend to know the correct investment decision.
 
             </div>
 
+
+            <!-- Alert engine -->
+
+            <h2>
+                Multi-signal alert engine
+            </h2>
+
+            <p class="figure-intro">
+                The sell / trim / watch system is intentionally conservative.
+                A single bad price movement should not automatically create a
+                sell signal. Alerts instead require combinations of signals
+                such as fundamentals, technical behavior, thesis changes,
+                volatility, and portfolio context.
+            </p>
+
+
+            <figure class="research-figure">
+
+                <a
+                    href="../assets/images/stock_agent/alert_engine.png"
+                    target="_blank"
+                    rel="noreferrer"
+                >
+
+                    <img
+                        src="../assets/images/stock_agent/alert_engine.png"
+                        alt="Sell, trim, and watch alert engine showing action,
+                        alert level, confidence, signal score, threshold,
+                        signal types, and investment-profile information."
+                        loading="lazy"
+                        decoding="async"
+                    >
+
+                </a>
+
+                <figcaption>
+
+                    <strong>
+                        Explainable alert engine.
+                    </strong>
+
+                    Alert decisions expose the signal score, required
+                    threshold, contributing signal categories, confidence,
+                    and investment-profile context used by the rule set.
+
+                </figcaption>
+
+            </figure>
+
+
+            <!-- Live data -->
+
+            <h2>
+                Read-only account synchronization
+            </h2>
+
+            <p class="figure-intro">
+                The project can synchronize holdings through a read-only
+                brokerage connection instead of depending exclusively on
+                manually maintained portfolio files. Synced positions are
+                normalized into the application's existing portfolio schema
+                so the rest of the analysis pipeline can remain unchanged.
+            </p>
+
+
+            <figure class="research-figure">
+
+                <a
+                    href="../assets/images/stock_agent/robinhood_sync.png"
+                    target="_blank"
+                    rel="noreferrer"
+                >
+
+                    <img
+                        src="../assets/images/stock_agent/robinhood_sync.png"
+                        alt="Read-only portfolio synchronization interface
+                        showing data source, synchronization mode, connection
+                        status, and an explanation of the synchronization
+                        workflow."
+                        loading="lazy"
+                        decoding="async"
+                    >
+
+                </a>
+
+                <figcaption>
+
+                    <strong>
+                        Read-only portfolio synchronization.
+                    </strong>
+
+                    Brokerage authentication is handled through the external
+                    connection workflow, while the application requests
+                    read-only investment-account access and normalizes
+                    retrieved positions into its local analysis schema.
+
+                </figcaption>
+
+            </figure>
+
+
+            <!-- Architecture -->
+
+            <h2>
+                System architecture
+            </h2>
+
+            <p>
+                The application is structured so that data acquisition,
+                portfolio analysis, recommendation logic, reporting, and the
+                interface remain separate concerns.
+            </p>
+
+
+            <div class="case-grid">
+
+                <div class="case-card">
+
+                    <h3>
+                        Market & account data
+                    </h3>
+
+                    <p>
+                        Retrieves market information and synchronizes
+                        portfolio holdings while tracking quote coverage,
+                        freshness, and reconciliation quality.
+                    </p>
+
+                </div>
+
+
+                <div class="case-card">
+
+                    <h3>
+                        Portfolio analysis
+                    </h3>
+
+                    <p>
+                        Evaluates allocation, concentration, portfolio health,
+                        individual holdings, and investment-profile fit.
+                    </p>
+
+                </div>
+
+
+                <div class="case-card">
+
+                    <h3>
+                        Decision support
+                    </h3>
+
+                    <p>
+                        Produces explainable holding signals, watchlist
+                        research, and multi-signal alerts without executing
+                        trades.
+                    </p>
+
+                </div>
+
+
+                <div class="case-card">
+
+                    <h3>
+                        Reporting
+                    </h3>
+
+                    <p>
+                        Generates recommendation history, daily alerts,
+                        weekly reviews, and optional email delivery.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Analyst -->
+
+            <h2>
+                Why the analyst is rule-based
+            </h2>
+
+            <p>
+                The current analyst layer is deterministic rather than
+                generative. Questions such as “Which holdings need review?”
+                or “Why do I own this position?” are routed to the same
+                portfolio facts and scoring engines used elsewhere in the
+                application.
+            </p>
+
+            <p>
+                This keeps recommendation logic reproducible and testable.
+                A future language-model layer could make those explanations
+                more conversational without changing the underlying decision
+                rules.
+            </p>
+
+
+            <!-- Engineering -->
 
             <h2>
                 Engineering practices
@@ -235,12 +492,13 @@
                 <div class="case-card">
 
                     <h3>
-                        Modular architecture
+                        Modular design
                     </h3>
 
                     <p>
-                        Separate modules for market data, portfolio scoring,
-                        reconciliation, recommendations, reports, and UI.
+                        Separate modules handle market data, portfolio
+                        scoring, reconciliation, recommendations, reports,
+                        and user-interface behavior.
                     </p>
 
                 </div>
@@ -249,12 +507,27 @@
                 <div class="case-card">
 
                     <h3>
-                        Testing
+                        Testing & CI
                     </h3>
 
                     <p>
-                        Automated tests, static checks, formatting checks,
-                        and GitHub Actions integration.
+                        Automated tests, formatting and static checks, and
+                        GitHub Actions help keep changes reproducible.
+                    </p>
+
+                </div>
+
+
+                <div class="case-card">
+
+                    <h3>
+                        Data resilience
+                    </h3>
+
+                    <p>
+                        Cached portfolio data allows the rest of the system
+                        to remain usable when an external data provider is
+                        temporarily unavailable.
                     </p>
 
                 </div>
@@ -267,28 +540,32 @@
                     </h3>
 
                     <p>
-                        Local account data and configuration are separated
+                        Account information, credentials, local portfolio
+                        files, and generated private reports are separated
                         from the public repository.
-                    </p>
-
-                </div>
-
-
-                <div class="case-card">
-
-                    <h3>
-                        Auditability
-                    </h3>
-
-                    <p>
-                        Recommendation history and explicit component scores
-                        make decisions easier to inspect.
                     </p>
 
                 </div>
 
             </div>
 
+
+            <!-- Scope -->
+
+            <div class="callout">
+
+                <strong>
+                    Scope:
+                </strong>
+
+                this project is an educational research and decision-support
+                tool. It does not execute trades, guarantee returns, or
+                provide financial advice.
+
+            </div>
+
+
+            <!-- Tools -->
 
             <h2>
                 Tools
@@ -309,6 +586,10 @@
                 </span>
 
                 <span class="tag">
+                    APIs
+                </span>
+
+                <span class="tag">
                     pytest
                 </span>
 
@@ -318,6 +599,10 @@
 
                 <span class="tag">
                     Data Pipelines
+                </span>
+
+                <span class="tag">
+                    Explainable Decision Support
                 </span>
 
             </div>

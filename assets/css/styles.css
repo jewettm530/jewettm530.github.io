@@ -1248,9 +1248,6 @@ p {
 
 /*
    Standard research figure.
-
-   The figure itself stays aligned with the normal reading
-   column unless .figure-wide is also applied.
 */
 .research-figure {
     margin: 44px 0 58px;
@@ -1299,37 +1296,6 @@ p {
     color: var(--text);
 
     font-weight: 600;
-}
-
-
-/*
-   Large scientific figures.
-
-   The surrounding prose remains at the comfortable 820px
-   reading width, while large plots can expand to 1080px.
-
-   The left:50% / translateX(-50%) combination centers the
-   wider figure around the reading column instead of allowing
-   it to extend only toward the right.
-*/
-.figure-wide {
-    position: relative;
-    left: 50%;
-
-    width: min(1080px, calc(100vw - 64px));
-    max-width: none;
-
-    transform: translateX(-50%);
-}
-
-
-/*
-   Particularly wide figures can receive a little more
-   breathing room without becoming visually disconnected
-   from the text around them.
-*/
-.figure-wide a {
-    padding: 22px;
 }
 
 
@@ -1678,10 +1644,6 @@ p {
 
     .research-figure {
         margin: 34px 0 42px;
-    }
-
-    .figure-wide {
-        width: 100%;
     }
 
     .figure-pair {
