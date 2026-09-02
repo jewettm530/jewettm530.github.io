@@ -1236,68 +1236,122 @@ p {
    Research figures
    ========================================================= */
 
+/*
+   Introductory paragraph immediately before a figure.
+*/
 .figure-intro {
-    margin-bottom: 24px;
+    margin-bottom: 28px;
 
     color: var(--muted);
 }
 
+
+/*
+   Standard research figure.
+
+   The figure itself stays aligned with the normal reading
+   column unless .figure-wide is also applied.
+*/
 .research-figure {
-    margin: 46px 0 54px;
+    margin: 44px 0 58px;
 }
 
 .research-figure a {
     display: block;
+
+    padding: 18px;
+
+    border: 1px solid var(--line);
+    background: var(--surface-strong);
+
+    transition:
+        border-color .2s ease,
+        transform .2s var(--ease);
+}
+
+.research-figure a:hover {
+    border-color: var(--accent);
+
+    transform: translateY(-2px);
 }
 
 .research-figure img {
+    display: block;
+
     width: 100%;
     height: auto;
 
-    border: 1px solid var(--line);
+    border: 0;
     background: #FFFFFF;
-
-    transition: border-color .2s ease;
-}
-
-.research-figure a:hover img {
-    border-color: var(--accent);
 }
 
 .research-figure figcaption {
-    max-width: 760px;
-    margin-top: 12px;
+    max-width: 780px;
+    margin-top: 14px;
 
     color: var(--muted);
 
-    font-size: .78rem;
-    line-height: 1.55;
+    font-size: .79rem;
+    line-height: 1.6;
 }
 
 .research-figure figcaption strong {
     color: var(--text);
+
     font-weight: 600;
 }
 
 
 /*
-   Allows large scientific figures to extend beyond
-   the narrower reading-text column.
+   Large scientific figures.
+
+   The surrounding prose remains at the comfortable 820px
+   reading width, while large plots can expand to 1080px.
+
+   The left:50% / translateX(-50%) combination centers the
+   wider figure around the reading column instead of allowing
+   it to extend only toward the right.
 */
 .figure-wide {
-    width: min(1100px, calc(100vw - 48px));
+    position: relative;
+    left: 50%;
+
+    width: min(1080px, calc(100vw - 64px));
     max-width: none;
+
+    transform: translateX(-50%);
 }
 
 
-/* Two related figures side by side */
+/*
+   Particularly wide figures can receive a little more
+   breathing room without becoming visually disconnected
+   from the text around them.
+*/
+.figure-wide a {
+    padding: 22px;
+}
+
+
+/*
+   Two related research figures.
+
+   These also expand beyond the reading column, but are
+   centered evenly rather than spilling to one side.
+*/
 .figure-pair {
-    margin: 38px 0 16px;
+    position: relative;
+    left: 50%;
+
+    width: min(1000px, calc(100vw - 64px));
+    margin: 42px 0 18px;
 
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
 
-    gap: 22px;
+    gap: 24px;
+
+    transform: translateX(-50%);
 }
 
 .figure-pair figure {
@@ -1306,24 +1360,35 @@ p {
 
 .figure-pair a {
     display: block;
+
+    padding: 14px;
+
+    border: 1px solid var(--line);
+    background: var(--surface-strong);
+
+    transition:
+        border-color .2s ease,
+        transform .2s var(--ease);
+}
+
+.figure-pair a:hover {
+    border-color: var(--accent);
+
+    transform: translateY(-2px);
 }
 
 .figure-pair img {
+    display: block;
+
     width: 100%;
     height: auto;
 
-    border: 1px solid var(--line);
+    border: 0;
     background: #FFFFFF;
-
-    transition: border-color .2s ease;
-}
-
-.figure-pair a:hover img {
-    border-color: var(--accent);
 }
 
 .figure-pair figcaption {
-    margin-top: 10px;
+    margin-top: 11px;
 
     color: var(--muted);
 
@@ -1333,19 +1398,59 @@ p {
 
 .figure-group-caption {
     max-width: 760px;
-    margin: 12px 0 52px;
+    margin: 12px 0 54px;
 
     color: var(--muted);
 
-    font-size: .78rem;
-    line-height: 1.55;
+    font-size: .79rem;
+    line-height: 1.6;
 }
 
 .figure-group-caption strong {
     color: var(--text);
+
     font-weight: 600;
 }
 
+
+/*
+   Optional figure label.
+
+   Useful later if you want small labels such as
+   "Figure 1" or "Model comparison".
+*/
+.figure-label {
+    margin-bottom: 10px;
+
+    color: var(--accent);
+
+    font-size: .68rem;
+    font-weight: 700;
+
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
+
+/*
+   Homepage research images.
+*/
+.project-art-image {
+    padding: 24px 24px 52px;
+
+    background: var(--surface);
+}
+
+.project-art-image img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    max-height: 390px;
+
+    object-fit: contain;
+}
 
 /* =========================================================
    Tablet
